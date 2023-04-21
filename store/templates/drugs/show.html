@@ -1,0 +1,45 @@
+{% extends 'drugs/base.html' %} {% load static %} {% block content %}
+<table class="table table-striped table-bordered table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th>Pharmacy</th>
+      <th>Drug Name</th>
+      <th>Price</th>
+      <th>Expiry Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for drug in drugs %}
+    <tr>
+      <td>{{ drug.pharmacy.name }}</td>
+      <td>{{ drug.name }}</td>
+      <td>{{ drug.price }}</td>
+      <td>{{ drug.expiry_date }}</td>
+      <td class="text-end">
+        <span>
+          <a
+            href="/drugs/edit/{{ drug.id }}"
+            class="btn btn-sm d-inline-flex align-items-center bg-info"
+            title="Edit"
+          >
+            <i class="fa fa-pen text-white"></i>
+          </a>
+          <a
+            href="/drugs/delete/{{ drug.id }}"
+            method="POST"
+            class="btn btn-sm d-inline-flex align-items-center bg-danger"
+            title="Delete"
+          >
+            <i class="fa fa-trash text-white"></i>
+          </a>
+        </span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br />
+<br />
+<center><a href="/drugs/create" class="btn btn-primary">Add New Record</a></center>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'drugs/base.html' %} {% load static %} {% block content %}
+<form method="POST" class="post-form" action="/drugs/create">
+  {% csrf_token %}
+  <div class="container">
+    <br />
+    <div class="form-group row">
+      <label class="col-sm-1 col-form-label"></label>
+      <div class="col-sm-4">
+        <h3>Enter Details</h3>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Pharmacy:</label>
+      <div class="col-sm-4">{{ form.pharmacy.name }}</div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Drug Name:</label>
+      <div class="col-sm-4">{{ form.name }}</div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Price:</label>
+      <div class="col-sm-4">{{ form.price }}</div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Expiry Date:</label>
+      <div class="col-sm-4">{{ form.expiry_date }}</div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-1 col-form-label"></label>
+      <div class="col-sm-4">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

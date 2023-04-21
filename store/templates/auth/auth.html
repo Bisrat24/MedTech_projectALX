@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/fontawesome.min.css' %}" />
+    <title>{{ title }} - MedTech</title>
+  </head>
+
+  <body class="header">
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'home' %}"
+        ><img src="{% static 'symbol.jpg' %}" width="50" height="50"
+      /></a>
+    </nav>
+    <div class="content">{% block content %} {% endblock %}</div>
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+  </body>
+</html>

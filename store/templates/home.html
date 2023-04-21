@@ -1,0 +1,35 @@
+{% load static %}
+<html>
+  <head>
+    <meta name="viewport" content="with=device—width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>MedTech</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/fontawesome.min.css' %}" />
+  </head>
+  <body>
+    <div class="bg-light" style="padding-left: 20px; padding-right: 20px">
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}"
+          ><img src="{% static 'symbol.jpg' %}" width="50" height="50"
+        /></a>
+        <a href="{% url 'home' %}" class="nav-link text-dark">HOME</a>
+        <a href="{% url 'all_stores' %}" class="nav-link text-dark">STORE</a>
+        <a href="{% url 'all_drugs' %}" class="nav-link text-dark">DRUGS</a>
+        {% if login %}
+        <a href="{% url 'logout' %}" class="nav-link text-dark">LOGOUT</a>
+        {% else %}
+        <a href="{% url 'login' %}" class="nav-link text-dark">LOGIN</a>
+        <a href="{% url 'register' %}" class="nav-link text-dark">REGISTER</a>
+        {% endif %}
+      </nav>
+    </div>
+    <section class="header">
+        <div>Placeholder</div>
+    </section>
+
+    <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+  </body>
+</html>

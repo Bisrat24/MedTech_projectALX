@@ -1,0 +1,45 @@
+{% extends 'store/base.html' %} {% load static %} {% block content %}
+<table class="table table-striped table-bordered table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th>Owner</th>
+      <th>Store Name</th>
+      <th>Store Location</th>
+      <th>Contact</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for store in stores %}
+    <tr>
+      <td>{{ store.owner_id }}</td>
+      <td>{{ store.name }}</td>
+      <td>{{ store.location }}</td>
+      <td>{{ store.phone }}</td>
+      <td class="text-end">
+        <span>
+          <a
+            href="/stores/edit/{{ store.id }}"
+            class="btn btn-sm d-inline-flex align-items-center bg-info"
+            title="Edit"
+          >
+            <i class="fa fa-pen text-white"></i>
+          </a>
+          <a
+            href="/stores/delete/{{ store.id }}"
+            method="POST"
+            class="btn btn-sm d-inline-flex align-items-center bg-danger"
+            title="Delete"
+          >
+            <i class="fa fa-trash text-white"></i>
+          </a>
+        </span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br />
+<br />
+<center><a href="/stores/create" class="btn btn-primary">Add New Record</a></center>
+{% endblock %}
