@@ -4,7 +4,7 @@ from django.db import models
 
 class Store(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     location = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
     is_approved = models.BooleanField(default=False)

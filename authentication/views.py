@@ -48,7 +48,10 @@ def logout_user(request):
 
 
 def validate_user(user):
-    if user.profile.type == 'pharmacy' and not user.store.is_approved:
+    store = Store.objects.filter(owner=user)[0]
+    if user.profile.type == 'pharmacy':
+        if store and store.is_approved:
+            return True
         return False
     return True
 
