@@ -9,10 +9,7 @@
         <h3>Enter Details</h3>
       </div>
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Pharmacy:</label>
-      <div class="col-sm-4">{{ form.pharmacy }}</div>
-    </div>
+      <div class="col-sm-4"><input type="hidden" name="store" id="store" value="{{store}}" /></div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Drug Name:</label>
       <div class="col-sm-4">{{ form.name }}</div>
@@ -33,4 +30,9 @@
     </div>
   </div>
 </form>
+<script>
+   $(document).ready(function () {
+    $("#id_expiry_date").attr("type", "date");
+  });
+</script>
 {% endblock %}

@@ -25,10 +25,10 @@
         {% endif %}
       </nav>
     </div>
-    <div class="content">{% block content %} {% endblock %}</div>
-
     <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
     <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
     <script src="{% static 'bootstrap/popper.min.js' %}"></script>
+
+    <div class="content">{% block content %} {% endblock %}</div>
   </body>
 </html>

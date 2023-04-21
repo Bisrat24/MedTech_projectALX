@@ -1,19 +1,28 @@
 from django.shortcuts import render, redirect
 from drugs.forms import DrugsForm
 from drugs.models import Drugs
+from store.models import Store
+
 
 def create_drug(request):
     if request.method == "POST":
         form = DrugsForm(request.POST)
         if form.is_valid():
+            store = Store.objects.get(id=request.POST.get('store'))
             try:
-                form.save()
+                Drugs.objects.create(
+                    name=request.POST.get('name'),
+                    price=request.POST.get('price'),
+                    pharmacy=store,
+                    expiry_date=request.POST.get('expiry_date'),
+                )
                 return redirect('/drugs/index')
             except:
                 pass
     else:
         form = DrugsForm()
-    return render(request, 'drugs/index.html', {'form': form})
+    store = Store.objects.filter(owner=request.user)[0]
+    return render(request, 'drugs/index.html', {'form': form, 'store': store.id})
 
 
 def show(request):
@@ -31,7 +40,7 @@ def update(request, id):
     form = DrugsForm(request.POST, instance=drug)
     if form.is_valid():
         form.save()
-        return redirect("/show")
+        return redirect('/drugs/index')
     return render(request, 'drugs/edit.html', {'drug': drug})
 
 

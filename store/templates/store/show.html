@@ -19,6 +19,16 @@
       <td class="text-end">
         <span>
           <a
+            href="/stores/{{ store.id }}"
+            class="btn btn-sm d-inline-flex align-items-center bg-warning"
+            title="View"
+          >
+            <i class="fa fa-eye text-white"></i>
+          </a>
+        </span>
+        {% if user.id == store.owner.id %}
+        <span>
+          <a
             href="/stores/edit/{{ store.id }}"
             class="btn btn-sm d-inline-flex align-items-center bg-info"
             title="Edit"
@@ -34,6 +44,7 @@
             <i class="fa fa-trash text-white"></i>
           </a>
         </span>
+        {% endif %}
       </td>
     </tr>
     {% endfor %}
