@@ -1,5 +1,5 @@
-{% extends 'drugs/base.html' %} {% load static %} {% block content %}
-<form method="POST" class="post-form" action="/drugs/create">
+{% extends 'store/base.html' %} {% load static %} {% block content %}
+<form method="POST" class="post-form">
   {% csrf_token %}
   <div class="container">
     <br />
@@ -10,26 +10,25 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Pharmacy:</label>
-      <div class="col-sm-4">{{ form.pharmacy }}</div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Drug Name:</label>
+      <label class="col-sm-2 col-form-label">Store Name:</label>
       <div class="col-sm-4">{{ form.name }}</div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Price:</label>
-      <div class="col-sm-4">{{ form.price }}</div>
+      <label class="col-sm-2 col-form-label">Location:</label>
+      <div class="col-sm-4">{{ form.location }}</div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Expiry Date:</label>
-      <div class="col-sm-4">{{ form.expiry_date }}</div>
+      <label class="col-sm-2 col-form-label">Phone:</label>
+      <div class="col-sm-4">{{ form.phone }}</div>
     </div>
     <div class="form-group row">
       <label class="col-sm-1 col-form-label"></label>
       <div class="col-sm-4">
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
+    </div>
+    <div class="form-group row">
+      <span class="text-warning font-weight-bold">Note: Approval may take up to 24 hours. We will get back to you</span>
     </div>
   </div>
 </form>

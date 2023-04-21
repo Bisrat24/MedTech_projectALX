@@ -18,7 +18,7 @@
               <button class="btn btn-success" type="submit">Login</button>
             </div>
             <div class="form-group col-10">
-              {{ form.errors }}
+              <span class="text-danger">{% if error %} {{ error }} {% endif %}</span>
               <p>New here? <a href="{% url 'register' %}" class="white">Register</a></p>
             </div>
           </div>

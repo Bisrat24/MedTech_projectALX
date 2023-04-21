@@ -12,7 +12,7 @@
   <tbody>
     {% for store in stores %}
     <tr>
-      <td>{{ store.owner_id }}</td>
+      <td>{{ store.owner.username }}</td>
       <td>{{ store.name }}</td>
       <td>{{ store.location }}</td>
       <td>{{ store.phone }}</td>
