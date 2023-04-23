@@ -25,10 +25,121 @@
         {% endif %}
       </nav>
     </div>
-    <section class="header">
-        <div>Placeholder</div>
-    </section>
-
+    <div class="dash-container" style="margin: 30px; max-height: 100vh">
+      <div class="dash-content">
+        <div class="row justify-content-center">
+          {% if user.is_authenticated %}
+          <div class="card" style="min-width: 800px;">
+            <div class="card-header">
+              <h1>Stores</h1>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody style="overflow: scroll;">
+                  {% for store in stores %}
+                  <tr>
+                    <td>{{ store.name }}</td>
+                    <td>{{ store.location }}</td>
+                    <td>{{ store.phone }}</td>
+                    <td>
+                      <a
+                        href="/stores/single/{{ store.id }}"
+                        class="btn btn-sm d-inline-flex align-items-center bg-warning"
+                        title="View"
+                      >
+                        <i class="fa fa-eye text-white"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="card-header">
+              <h1>Drugs</h1>
+            </div>
+            <div class="card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Store</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody style="overflow: scroll;">
+                  {% for drug in drugs %}
+                  <tr>
+                    <td>{{ drug.name }}</td>
+                    <td>
+                      <a href="stores/single/{{drug.pharmacy.id }}"> {{ drug.pharmacy }} </a>
+                    </td>
+                    <td>{{ drug.price }}</td>
+                    <td>
+                      {% if user.is_authenticated and user.id == drug.pharmacy.owner.id %}
+                      <span>
+                        <a
+                          href="/drugs/edit/{{ drug.id }}"
+                          class="btn btn-sm d-inline-flex align-items-center bg-info"
+                          title="Edit"
+                        >
+                          <i class="fa fa-pen text-white"></i>
+                        </a>
+                        <a
+                          href="/drugs/delete/{{ drug.id }}"
+                          method="POST"
+                          class="btn btn-sm d-inline-flex align-items-center bg-danger"
+                          title="Delete"
+                        >
+                          <i class="fa fa-trash text-white"></i>
+                        </a>
+                      </span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% else %}
+          <div class="card">
+            <div class="card-header">
+              <h1>MedTech</h1>
+            </div>
+            <div class="card-body">
+              <p>
+                MedTech is a web application that allows users to search for drugs, view their
+                details, and find the stores that sell them.
+              </p>
+              <p>
+                To use the application, you must first register an account. Once you have
+                registered, you can log in and start searching for drugs.
+              </p>
+              <p>
+                If you are a store owner, you can register your store and add drugs to it. You can
+                also edit the details of your store and the drugs you sell.
+              </p>
+              <div class="row justify-content-center">
+                <a href="{% url 'login' %}" class="btn btn-primary">LOGIN</a>
+                <span style="padding-left: 10px; padding-right: 10px"></span>
+                <a href="{% url 'register' %}" class="btn btn-primary">REGISTER</a>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
     <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
     <script src="{% static 'bootstrap/jquery-3.3.1.slim.min.js' %}"></script>
     <script src="{% static 'bootstrap/popper.min.js' %}"></script>

@@ -18,8 +18,8 @@
       <td>{{ drug.name }}</td>
       <td>{{ drug.price }}</td>
       <td>{{ drug.expiry_date }}</td>
-      {% if user.is_authenticated and user.id == drug.pharmacy.owner.id %}
       <td class="text-end">
+        {% if user.is_authenticated and user.id == drug.pharmacy.owner.id %}
         <span>
           <a
             href="/drugs/edit/{{ drug.id }}"
@@ -37,8 +37,8 @@
             <i class="fa fa-trash text-white"></i>
           </a>
         </span>
+        {% endif %}
       </td>
-      {% endif %}
     </tr>
     {% endfor %}
   </tbody>
