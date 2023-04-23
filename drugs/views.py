@@ -16,7 +16,7 @@ def create_drug(request):
                     pharmacy=store,
                     expiry_date=request.POST.get('expiry_date'),
                 )
-                return redirect('/drugs/index')
+                return redirect('/stores/single/{}'.format(store.id))
             except:
                 pass
     else:

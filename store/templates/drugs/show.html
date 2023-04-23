@@ -14,7 +14,7 @@
   <tbody>
     {% for drug in drugs %}
     <tr>
-      <td>{{ drug.pharmacy.name }}</td>
+      <td><b><a href="/stores/single/{{drug.pharmacy.id}}">{{ drug.pharmacy.name }}</a></b></td>
       <td>{{ drug.name }}</td>
       <td>{{ drug.price }}</td>
       <td>{{ drug.expiry_date }}</td>

@@ -1,0 +1,79 @@
+{% extends 'store/base.html' %} {% load static %} {% block content %}
+
+<div class="card">
+  <div class="card-body employee-detail-body fulls-card">
+    <h5>{{ store.name }}</h5>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="text-muted">
+          <strong class="font-bold">Location: </strong>
+          <span>{{store.location}}</span>
+        </div>
+        <div class="text-muted">
+          <strong class="font-bold">Phone: </strong>
+          <span>{{store.phone}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="drugs_table">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body table-border-style">
+          <div class="table-responsive">
+            <table class="table datatable table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th>Drug Name</th>
+                  <th>Price</th>
+                  <th>Expiry Date</th>
+                  {% if user.is_authenticated %}
+                  <th>Actions</th>
+                  {% endif %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for drug in drugs %}
+                <tr>
+                  <td>{{ drug.name }}</td>
+                  <td>{{ drug.price }}</td>
+                  <td>{{ drug.expiry_date }}</td>
+                  {% if user.is_authenticated and user.id == drug.pharmacy.owner.id %}
+                  <td class="text-end">
+                    <span>
+                      <a
+                        href="/drugs/edit/{{ drug.id }}"
+                        class="btn btn-sm d-inline-flex align-items-center bg-info"
+                        title="Edit"
+                      >
+                        <i class="fa fa-pen text-white"></i>
+                      </a>
+                      <a
+                        href="/drugs/delete/{{ drug.id }}"
+                        method="POST"
+                        class="btn btn-sm d-inline-flex align-items-center bg-danger"
+                        title="Delete"
+                      >
+                        <i class="fa fa-trash text-white"></i>
+                      </a>
+                    </span>
+                  </td>
+                  {% endif %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+<br />
+{% if user.is_authenticated and user.profile.type == 'pharmacy' %}
+<center><a href="/drugs/create" class="btn btn-primary">Add New Record</a></center>
+{% endif %} {% endblock %}
