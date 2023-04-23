@@ -31,7 +31,7 @@ def update(request, id):
     form = StoreForm(request.POST, instance=store)
     if form.is_valid():
         form.save()
-        return redirect("/show")
+        return redirect("/stores/index")
     return render(request, 'store/edit.html', {'store': store})
 
 
